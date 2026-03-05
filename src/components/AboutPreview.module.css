@@ -58,6 +58,12 @@
     margin-bottom: var(--space-xl);
 }
 
+.actionButtons {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
 .feature {
     display: flex;
     align-items: center;

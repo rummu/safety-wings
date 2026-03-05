@@ -97,6 +97,7 @@ const en = {
             '24/7 Support',
         ],
         readMore: 'Read More About Us',
+        downloadBrochure: 'Download Brochure',
         yearsExp: 'Years Exp.',
     },
 
