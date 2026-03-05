@@ -1,0 +1,214 @@
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    max-height: 900px;
+    overflow: hidden;
+    background: var(--color-black);
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.slideImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    transition: transform 8s ease;
+}
+
+.slide.active .slideImage {
+    transform: scale(1);
+}
+
+.slideOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(10, 10, 10, 0.75) 0%,
+            rgba(27, 94, 32, 0.4) 50%,
+            rgba(10, 10, 10, 0.6) 100%);
+}
+
+.slideContent {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 var(--container-padding);
+    z-index: 2;
+}
+
+.heroTagline {
+    font-size: 1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.heroTitle {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--color-white);
+    line-height: 1.1;
+    max-width: 800px;
+    margin-bottom: var(--space-lg);
+    animation: fadeInUp 0.8s ease 0.4s both;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+}
+
+.heroTitleAccent {
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.heroDesc {
+    font-size: 1.15rem;
+    color: var(--color-gray-300);
+    max-width: 550px;
+    line-height: 1.7;
+    margin-bottom: var(--space-xl);
+    animation: fadeInUp 0.8s ease 0.6s both;
+}
+
+.heroBtns {
+    display: flex;
+    gap: var(--space-md);
+    animation: fadeInUp 0.8s ease 0.8s both;
+}
+
+/* Dots */
+.dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.dot.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    width: 36px;
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-gray-400);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: float 2s ease infinite;
+}
+
+.scrollMouse {
+    width: 24px;
+    height: 38px;
+    border: 2px solid var(--color-gray-400);
+    border-radius: 14px;
+    position: relative;
+}
+
+.scrollMouse::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 8px;
+    background: var(--color-accent);
+    border-radius: var(--radius-full);
+    animation: scrollDot 1.5s ease infinite;
+}
+
+@keyframes scrollDot {
+    0% {
+        opacity: 1;
+        top: 6px;
+    }
+
+    100% {
+        opacity: 0;
+        top: 20px;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 500px;
+        max-height: 700px;
+    }
+
+    .heroTitle {
+        font-size: 2.5rem;
+    }
+
+    .heroDesc {
+        font-size: 1rem;
+    }
+
+    .heroBtns {
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .scrollIndicator {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .heroTitle {
+        font-size: 2rem;
+    }
+
+    .heroTagline {
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+    }
+}

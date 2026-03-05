@@ -1,0 +1,109 @@
+.categories {
+    background: var(--bg-section-alt);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+}
+
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+.card:hover .cardImage img {
+    transform: scale(1.1);
+}
+
+.card:hover .cardOverlay {
+    opacity: 1;
+}
+
+.cardImage {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.cardImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.cardOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(27, 94, 32, 0.8), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-lg);
+}
+
+.cardOverlayText {
+    color: var(--color-white);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.cardBody {
+    padding: var(--space-lg) var(--space-xl);
+}
+
+.cardTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: var(--space-xs);
+}
+
+.cardDesc {
+    font-size: 0.85rem;
+    color: var(--color-gray-600);
+    line-height: 1.5;
+}
+
+.cardIcon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    font-size: 1.1rem;
+    margin-bottom: var(--space-md);
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    .cardImage {
+        height: 200px;
+    }
+}

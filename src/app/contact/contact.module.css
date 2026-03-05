@@ -1,0 +1,138 @@
+.contactPage {}
+
+.contactLayout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-2xl);
+    align-items: start;
+}
+
+/* Contact Info Side */
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.infoCard {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-md);
+}
+
+.infoCard h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: var(--space-xl);
+}
+
+.infoItem {
+    display: flex;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.infoItem:last-child {
+    margin-bottom: 0;
+}
+
+.infoIcon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(27, 94, 32, 0.1));
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.infoText h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 4px;
+}
+
+.infoText p {
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+    line-height: 1.6;
+}
+
+/* Office Hours */
+.hoursCard {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-md);
+}
+
+.hoursCard h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: var(--space-xl);
+}
+
+.hoursTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.hoursTable td {
+    padding: 10px 0;
+    font-size: 0.92rem;
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+.hoursTable tr:last-child td {
+    border-bottom: none;
+}
+
+.hoursDay {
+    font-weight: 600;
+    color: var(--color-dark);
+}
+
+.hoursTime {
+    color: var(--color-gray-600);
+    text-align: right;
+}
+
+.hoursClosed {
+    color: #e53935;
+    font-weight: 600;
+    text-align: right;
+}
+
+/* Map */
+.mapSection {
+    margin-top: var(--space-3xl);
+}
+
+.mapWrapper {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    height: 400px;
+}
+
+.mapWrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .contactLayout {
+        grid-template-columns: 1fr;
+    }
+
+    .mapWrapper {
+        height: 300px;
+    }
+}

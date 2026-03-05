@@ -1,0 +1,220 @@
+.footer {
+    background: var(--bg-dark);
+    color: var(--color-gray-400);
+    padding-top: var(--space-4xl);
+}
+
+.footerGrid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    gap: var(--space-3xl);
+    padding-bottom: var(--space-3xl);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Brand Column */
+.footerBrand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.footerLogo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logoIconSmall {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    object-fit: contain;
+}
+
+.footerLogoText {
+    display: flex;
+    flex-direction: column;
+}
+
+.footerLogoName {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-white);
+    line-height: 1.1;
+}
+
+.footerLogoNameGreen {
+    color: var(--color-accent);
+}
+
+.footerLogoSub {
+    font-size: 0.6rem;
+    color: var(--color-gray-500);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.footerDesc {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--color-gray-500);
+}
+
+.socialLinks {
+    display: flex;
+    gap: 10px;
+}
+
+.socialLink {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-400);
+    font-size: 1.1rem;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+}
+
+.socialLink:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-3px);
+}
+
+/* Links Columns */
+.footerColumn h4 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: var(--space-xl);
+    position: relative;
+}
+
+.footerColumn h4::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: var(--color-accent);
+    margin-top: var(--space-sm);
+    border-radius: var(--radius-full);
+}
+
+.footerLinks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.footerLink {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.9rem;
+    color: var(--color-gray-500);
+    text-decoration: none;
+    padding: 4px 0;
+    transition: all var(--transition-fast);
+}
+
+.footerLink:hover {
+    color: var(--color-accent);
+    transform: translateX(4px);
+}
+
+.footerLinkIcon {
+    font-size: 0.7rem;
+    color: var(--color-accent);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.footerLink:hover .footerLinkIcon {
+    opacity: 1;
+}
+
+/* Contact Info */
+.contactItem {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.contactIcon {
+    width: 40px;
+    height: 40px;
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.contactText {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.contactLabel {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-gray-600);
+}
+
+.contactValue {
+    font-size: 0.9rem;
+    color: var(--color-gray-300);
+    line-height: 1.5;
+}
+
+/* Bottom Bar */
+.footerBottom {
+    padding: var(--space-xl) 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--color-gray-600);
+}
+
+.footerBottom a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.footerBottom a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+    .footerGrid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2xl);
+    }
+}
+
+@media (max-width: 600px) {
+    .footerGrid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .footerBottom {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+    }
+}
