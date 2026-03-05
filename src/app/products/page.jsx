@@ -45,7 +45,9 @@ const categoryCounts = [
     { key: 'Fire Safety Equipment', count: 1 },
 ];
 
-export default function ProductsPage() {
+import { Suspense } from 'react';
+
+function ProductsContent() {
     const searchParams = useSearchParams();
     const categoryParam = searchParams.get('category');
     const [activeCategory, setActiveCategory] = useState('All');
@@ -70,7 +72,7 @@ export default function ProductsPage() {
 
     return (
         <div className={styles.productsPage}>
-            {/* Banner */}
+            {/* ... Existing Banner code ... */}
             <div className="page-banner">
                 <div className="container">
                     <h1>{t.productsPage.title}</h1>
@@ -127,5 +129,13 @@ export default function ProductsPage() {
                 </div>
             </section>
         </div>
+    );
+}
+
+export default function ProductsPage() {
+    return (
+        <Suspense fallback={<div style={{ padding: '100px', textAlign: 'center' }}>Loading products...</div>}>
+            <ProductsContent />
+        </Suspense>
     );
 }
