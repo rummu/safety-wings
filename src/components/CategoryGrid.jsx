@@ -15,6 +15,15 @@ const categoryImages = [
 
 const categoryIcons = ['🛡️', '🧤', '😷', '👔', '⚠️', '🔥'];
 
+const categoryKeys = [
+    'Personal Protective Equipment',
+    'Safety Gloves',
+    'Respiratory Protection',
+    'Protective Coveralls',
+    'Safety Sign Systems',
+    'Fire Safety Equipment',
+];
+
 export default function CategoryGrid() {
     const { t } = useLanguage();
     const items = t.categories.items;
@@ -33,7 +42,7 @@ export default function CategoryGrid() {
                 <div className={styles.grid}>
                     {items.map((cat, i) => (
                         <ScrollReveal key={i} animation="scaleUp" delay={i * 120}>
-                            <Link href="/products" style={{ textDecoration: 'none' }}>
+                            <Link href={`/products?category=${encodeURIComponent(categoryKeys[i])}`} style={{ textDecoration: 'none' }}>
                                 <div className={styles.card}>
                                     <div className={styles.cardImage}>
                                         <img src={categoryImages[i]} alt={cat.title} />

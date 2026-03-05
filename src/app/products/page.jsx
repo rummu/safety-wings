@@ -1,6 +1,7 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 import styles from './products.module.css';
 
@@ -45,8 +46,16 @@ const categoryCounts = [
 ];
 
 export default function ProductsPage() {
+    const searchParams = useSearchParams();
+    const categoryParam = searchParams.get('category');
     const [activeCategory, setActiveCategory] = useState('All');
     const { t } = useLanguage();
+
+    useEffect(() => {
+        if (categoryParam && categoryCounts.some(c => c.key === categoryParam)) {
+            setActiveCategory(categoryParam);
+        }
+    }, [categoryParam]);
 
     const products = t.productsPage.items.map((item, i) => ({
         ...item,
