@@ -3,14 +3,15 @@ import { useLanguage } from '@/context/LanguageContext';
 import ScrollReveal from './ScrollReveal';
 import styles from './BrandsSection.module.css';
 
+import Image from 'next/image';
+
 const brands = [
-    { name: '3M', initial: '3M', color: '#E4002B' },
-    { name: 'Honeywell', initial: 'H', color: '#E1251B' },
-    { name: 'Safety Wings', initial: 'SW', color: '#1B5E20' },
-    { name: 'Road-Mate', initial: 'RM', color: '#FF6F00' },
-    { name: 'Vaultex', initial: 'V', color: '#1565C0' },
-    { name: 'Pro-Guard', initial: 'PG', color: '#6A1B9A' },
-    { name: 'Pak Safety', initial: 'PS', color: '#00897B' },
+    { name: '3M', logo: '/company logo/3M.jpeg', initial: '3M', color: '#E4002B' },
+    { name: 'Honeywell', logo: '/company logo/Honeywell.jpeg', initial: 'H', color: '#E1251B' },
+    { name: 'Road-Mate', logo: null, initial: 'RM', color: '#FF6F00' },
+    { name: 'Vaultex', logo: '/company logo/Vaultex.jpeg', initial: 'V', color: '#1565C0' },
+    { name: 'Pro-Guard', logo: '/company logo/PROGUARD.jpeg', initial: 'PG', color: '#6A1B9A' },
+    { name: 'Pak Safety', logo: '/company logo/PAK SAFETY.jpeg', initial: 'PS', color: '#00897B' },
 ];
 
 export default function BrandsSection() {
@@ -37,9 +38,15 @@ export default function BrandsSection() {
                         <div key={i} className={styles.card}>
                             <div
                                 className={styles.icon}
-                                style={{ background: `${brand.color}18`, color: brand.color }}
+                                style={!brand.logo ? { background: `${brand.color}18`, color: brand.color } : { background: 'transparent' }}
                             >
-                                <span className={styles.initial}>{brand.initial}</span>
+                                {brand.logo ? (
+                                    <div className={styles.logoWrapper}>
+                                        <Image src={brand.logo} alt={brand.name} width={80} height={80} className={styles.brandImage} />
+                                    </div>
+                                ) : (
+                                    <span className={styles.initial}>{brand.initial}</span>
+                                )}
                             </div>
                             <span className={styles.name}>{brand.name}</span>
                         </div>

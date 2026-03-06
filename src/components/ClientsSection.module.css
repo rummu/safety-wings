@@ -59,14 +59,13 @@
 }
 
 .card:hover .icon {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent)) !important;
-    color: var(--color-white) !important;
+    background: transparent !important;
     transform: scale(1.1);
 }
 
 .icon {
-    width: 48px;
-    height: 48px;
+    width: 80px;
+    height: 80px;
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
@@ -91,4 +90,19 @@
     letter-spacing: 0.5px;
     line-height: 1.3;
     white-space: nowrap;
+}
+
+.logoWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clientImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
 }

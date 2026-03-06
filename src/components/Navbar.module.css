@@ -39,8 +39,8 @@
 }
 
 .logoIcon {
-    width: 45px;
-    height: 45px;
+    width: 65px;
+    height: 65px;
     border-radius: var(--radius-md);
     object-fit: contain;
 }
