@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
@@ -45,13 +45,15 @@ const categoryCounts = [
     { key: 'Fire Safety Equipment', count: 1 },
 ];
 
-import { Suspense } from 'react';
+
 
 function ProductsContent() {
     const searchParams = useSearchParams();
     const categoryParam = searchParams.get('category');
     const [activeCategory, setActiveCategory] = useState('All');
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
+    const [rawProducts, setRawProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (categoryParam && categoryCounts.some(c => c.key === categoryParam)) {
@@ -59,16 +61,49 @@ function ProductsContent() {
         }
     }, [categoryParam]);
 
-    const products = t.productsPage.items.map((item, i) => ({
-        ...item,
-        image: productImages[i],
-        categoryKey: productCategoryKeys[i],
+    useEffect(() => {
+        const fetchProducts = async () => {
+            setLoading(true);
+            const { supabase } = await import('@/lib/supabase');
+            const { data, error } = await supabase
+                .from('products')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (!error && data) {
+                setRawProducts(data);
+            }
+            setLoading(false);
+        };
+        fetchProducts();
+    }, []);
+
+    const products = rawProducts.map((p) => ({
+        ...p,
+        title: language === 'ar' ? p.title_ar : p.title_en,
+        desc: language === 'ar' ? p.desc_ar : p.desc_en,
+        image: p.image_url || '/images/hero-equipment.jpeg',
+        categoryKey: p.category_key || 'Personal Protective Equipment',
     }));
 
     const filtered =
         activeCategory === 'All'
             ? products
             : products.filter((p) => p.categoryKey === activeCategory);
+
+    const categoriesFromProducts = rawProducts.reduce((acc, p) => {
+        const cat = p.category_key || 'Personal Protective Equipment';
+        acc[cat] = (acc[cat] || 0) + 1;
+        return acc;
+    }, {});
+
+    const dynamicCategoryCounts = [
+        { key: 'All', count: rawProducts.length },
+        ...Object.keys(categoriesFromProducts).map(key => ({
+            key,
+            count: categoriesFromProducts[key]
+        }))
+    ];
 
     return (
         <div className={styles.productsPage}>
@@ -92,7 +127,7 @@ function ProductsContent() {
                         <aside className={styles.sidebar}>
                             <h3 className={styles.sidebarTitle}>{t.productsPage.sidebarTitle}</h3>
                             <div className={styles.categoryList}>
-                                {categoryCounts.map((cat) => (
+                                {dynamicCategoryCounts.map((cat) => (
                                     <button
                                         key={cat.key}
                                         className={`${styles.categoryItem} ${activeCategory === cat.key ? styles.active : ''}`}
